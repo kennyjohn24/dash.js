@@ -60,6 +60,10 @@ class LangMatcher extends BaseMatcher {
             str => {
                 let lang = bcp47Normalize(str);
                 if (lang !== undefined) {
+                    // BCP47 normalization can not be matched
+                    if (lang === '') {
+                        return String(str);
+                    }
                     return lang;
                 }
                 return String(str);
